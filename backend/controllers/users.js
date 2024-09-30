@@ -18,7 +18,7 @@ const getUser = (req, res) => {
 UserInfo.findById(req.params,id).orFail().then(user => {
   res.send(user);
 })
-.catch((error) => handleError( error, res));
+.catch((err) => handleError( err, res));
 };
 
 const createUser= (req, res) => {
@@ -56,7 +56,30 @@ const login = (req, res) => {
 
 }
 
-const newUser = (req, res) => {
+const setProfileImage = (req, res) => {
+const { avatar } = req.body;
+UserInfo.findUserByCredentials(req.user._id, {avatar}, {new: true})
+.orfail()
+.then((user) => {
+  res.send(user);
+}).catch((err) => handleError(err, res));
+
+}
+
+const updateDataUser = (req, res) => {
+  const { name, about } = req.body;
+  UserInfo.findUserByCredentials(req.user._id, {name, about}, {new: true})
+  .orfail()
+  .then((user) => {
+    res.send(user);
+  }).catch((err) => handleError(err, res));
+
+  }
+
+
+
+
+/*const newUser = (req, res) => {
   const {name, about, avatar} = req.body;
   UserInfo.create({name, about, avatar})
   .then((user) => {
@@ -64,7 +87,7 @@ const newUser = (req, res) => {
   })
   .catch((error) => handleError( error, res));
 };
+*/
 
 
-
-module.exports = {listUsers, getUser, newUser, createUser, login};
+module.exports = {listUsers, getUser, newUser, createUser, login, updateDataUser, setProfileImage};

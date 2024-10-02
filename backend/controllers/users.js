@@ -77,9 +77,7 @@ const updateDataUser = (req, res) => {
   }
 
 
-
-
-/*const newUser = (req, res) => {
+const newUser = (req, res) => {
   const {name, about, avatar} = req.body;
   UserInfo.create({name, about, avatar})
   .then((user) => {
@@ -87,7 +85,7 @@ const updateDataUser = (req, res) => {
   })
   .catch((error) => handleError( error, res));
 };
-*/
 
 
-module.exports = {listUsers, getUser, newUser, createUser, login, updateDataUser, setProfileImage};
+
+module.exports = {listUsers, getUser, createUser, newUser, login, updateDataUser, setProfileImage};

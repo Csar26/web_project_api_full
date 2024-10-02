@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/26092024aroundb');
+mongoose.connect('mongodb://localhost:27017/0212024aroundb');
 const { errors } = require('celebrate');
 const cors = require('cors');
 const fileUpload = require("express-fileupload");
@@ -33,13 +33,14 @@ const userRoutes = require("./routes/users");
 
 const cardsRoutes = require("./routes/cards");
 
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
   req.user = {
     _id: '5d8b8592978f8bd833ca8133'
   };
 
   next();
 });
+*/
 
 app.use(userRoutes);
 app.use(cardsRoutes);

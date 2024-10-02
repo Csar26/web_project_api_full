@@ -1,4 +1,4 @@
-export const BASE_URL = "https://tripleten.desarrollointerno.com";
+export const BASE_URL = "https://api.auge25.mooo.com";
 
 
 

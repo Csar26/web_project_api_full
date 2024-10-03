@@ -4,21 +4,22 @@ mongoose.connect('mongodb://localhost:27017/0212024aroundb');
 const { errors } = require('celebrate');
 const cors = require('cors');
 const fileUpload = require("express-fileupload");
-require('dotenv').config();
+require('dotenv').config()
 const bodyParser = require('body-parser');
-
 const app = express();
 
 
-const whitelist = ['https://auge25.mooo.com, https://www.auge25.mooo.com']
+const whitelist = ['https://auge25.mooo.com, https://www.auge25.mooo.com', "http://localhost"]
 const corsOptions = {
-  origin: function (origin, callback) {
+origin: whitelist,
+  /*origin: function (origin, callback) {
+    console.log(origin)
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
       callback(new Error('Not allowed by CORS'))
     }
-  }
+  }*/
 }
 
 app.use(cors(corsOptions))

@@ -1,14 +1,14 @@
 /*2d081123-97ed-4275-a38c-78637871cb43*/
 export default class Api {
-  constructor(url, token) {
+  constructor(url) {
     this._url = url;
-    this._token = token;
+    this._token = localStorage.getItem("jwt");
   }
 
   getUserInfo() {
     return fetch(this._url + "/users/me", {
       headers: {
-        Authorization: this._token,
+        Authorization: this._token || localStorage.getItem("jwt"),
         "Content-Type": "application/json",
       },
     }).then((response) => response.json());
@@ -17,7 +17,7 @@ export default class Api {
   getCards() {
     return fetch(this._url + "/cards", {
       headers: {
-        Authorization: this._token,
+        Authorization: this._token || localStorage.getItem("jwt"),
         "Content-Type": "application/json",
       },
     }).then((response) => response.json());
@@ -25,7 +25,7 @@ export default class Api {
   updateUser(name, about) {
     return fetch(this._url + "/users/me", {
       headers: {
-        Authorization: this._token,
+        Authorization: this._token || localStorage.getItem("jwt"),
         "Content-Type": "application/json",
       },
       method: "PATCH",
@@ -39,7 +39,7 @@ export default class Api {
   addCard(link, title) {
     return fetch(this._url + "/cards", {
       headers: {
-        Authorization: this._token,
+        Authorization: this._token || localStorage.getItem("jwt"),
         "Content-Type": "application/json",
       },
       method: "POST",
@@ -53,7 +53,7 @@ export default class Api {
   deleteCard(idcard) {
     return fetch(this._url + "/cards/" + idcard, {
       headers: {
-        Authorization: this._token,
+        Authorization: this._token || localStorage.getItem("jwt"),
         "Content-Type": "application/json",
       },
       method: "DELETE",
@@ -63,7 +63,7 @@ export default class Api {
   likeCard(idcard) {
     return fetch(this._url + "/cards/likes/" + idcard, {
       headers: {
-        Authorization: this._token,
+        Authorization: this._token || localStorage.getItem("jwt"),
         "Content-Type": "application/json",
       },
       method: "PUT",
@@ -74,7 +74,7 @@ export default class Api {
   deleteLikeCard(idcard) {
     return fetch(this._url + "/cards/likes/" + idcard, {
       headers: {
-        Authorization: this._token,
+        Authorization: this._token || localStorage.getItem("jwt"),
         "Content-Type": "application/json",
       },
       method: "DELETE",
@@ -84,7 +84,7 @@ export default class Api {
 changeAvatar(avatar){
   return fetch(this._url + "/users/me/avatar", {
     headers: {
-      Authorization: this._token,
+      Authorization: this._token || localStorage.getItem("jwt"),
       "Content-Type": "application/json",
     },
     body: JSON.stringify({

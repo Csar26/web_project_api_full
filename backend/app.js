@@ -6,6 +6,8 @@ const cors = require('cors');
 const fileUpload = require("express-fileupload");
 require('dotenv').config()
 const bodyParser = require('body-parser');
+const gotError = require("./middleware/gotError");
+const { requestLogger, errorLogger } = require('./middleware/looger');
 const app = express();
 
 
@@ -13,7 +15,6 @@ const whitelist = ['https://auge25.mooo.com, https://www.auge25.mooo.com', "http
 const corsOptions = {
 origin: whitelist,
   /*origin: function (origin, callback) {
-    console.log(origin)
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
@@ -30,18 +31,11 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(fileUpload());
 
+app.use(requestLogger);
+
 const userRoutes = require("./routes/users");
 
 const cardsRoutes = require("./routes/cards");
-
-/*app.use((req, res, next) => {
-  req.user = {
-    _id: '5d8b8592978f8bd833ca8133'
-  };
-
-  next();
-});
-*/
 
 app.use(userRoutes);
 app.use(cardsRoutes);
@@ -59,7 +53,11 @@ app.post('/*', (req, res)=> {
   res.status(404).send({message:'NOT FOUND'})
 })
 
+app.use(errorLogger);
+
 app.use(errors());
+
+app.use(gotError);
 
 
 app.listen(PORT, () => {

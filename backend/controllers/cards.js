@@ -4,13 +4,14 @@ const handleError = require("../utils/handlerError");
 const CardModel = require('../models/cards')
 
 function getCards(req, res){
-  CardModel.find({}).then(cards => {
+  CardModel.find({}).populate('owner').then(cards => {
     res.send(cards)
+  }).catch(errors => {
+    res.status(404).send({
+      message:'NOT FOUND',
+      errors
+    })
   })
-  res.status(404).send({
-    message:'NOT FOUND'
-  })
-
 }
 
 function storeCards(req, res){

@@ -4,12 +4,14 @@ const handleError = (error, res ) => {
     return res.status(error.statusCode).send({
       status: false,
       message: "NOT FOUND",
+      error
     });
 
   }else {
     return res.status(ERROR_CODE).send({
       status: false,
       message:" REQUEST ERROR",
+      error
     });
   }
 };

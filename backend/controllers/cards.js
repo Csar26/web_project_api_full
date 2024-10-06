@@ -3,14 +3,16 @@ const router = require("express").Router();
 const handleError = require("../utils/handlerError");
 const CardModel = require('../models/cards')
 
-function getCards(req, res){
-  CardModel.find({}).then(cards => {
-    res.send(cards)
-  })
-  res.status(404).send({
-    message:'NOT FOUND'
-  })
 
+function getCards(req, res){
+  CardModel.find({}).populate('owner').then(cards => {
+    res.send(cards)
+  }).catch(errors => {
+    res.status(404).send({
+      message:'NOT FOUND',
+      errors
+    })
+  })
 }
 
 function storeCards(req, res){
@@ -25,7 +27,7 @@ function storeCards(req, res){
 
 function deleteCards(req, res){
   const id = req.params.id;
-  CardModel.findByIdAndDelete(id).orFail().then(()=> {
+  CardModel.find({_id:id, owner: req.user._id}).orFail().then(()=> {
     res.send({status: true})
   }).catch((error) => handleError( error, res));
 

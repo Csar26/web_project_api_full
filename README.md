@@ -1,6 +1,10 @@
 # Tripleten web_project_api_full
 Proyecto: web_project_api_full
 
+
+Link del proyecto: https://www.auge25.mooo.com
+
+
 Descripción:
 
 Este proyecto es una aplicación web completa que implementa autenticación de usuario, autorización y un manejo de errores robusto. La aplicación se divide en un frontend y un backend.
@@ -59,9 +63,8 @@ cd ../frontend
 npm start
 Use code with caution.
 
-Despliegue:
-
-Sigue las instrucciones en el directorio deployment (si se proporciona) para conocer los pasos específicos de implementación.
+Validacion de datos:
+Gracias a Celebrate y Joi, la aplicación garantiza la integridad de los datos ingresados en la base de datos. La elección de Google Cloud Platform proporciona escalabilidad y rendimiento. Certbot asegura la seguridad del sitio web mediante certificados SSL. Nginx optimiza el manejo de las solicitudes y PM2 garantiza la estabilidad de la aplicación.
 
 Pasos clave:
 
@@ -69,3 +72,4 @@ Construir el paquete de producción frontend.
 Implementar el backend en una plataforma en la nube.
 Configurar un dominio y habilitar HTTPS.
 Configurar Nginx o un proxy inverso similar para balanceo de carga y servicio de archivos estáticos.
+

@@ -4,6 +4,11 @@ const auth = require('../middleware/auth');
 const {celebrate, Joi, Segments} = require("celebrate");
 
 
+router.get("/crash-test", () => {
+  setTimeout(() => {
+    throw new Error("El servidor va a caer");
+  }, 0);
+});
 
 
 router.post("/signup", celebrate ({

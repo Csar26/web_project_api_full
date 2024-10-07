@@ -3,6 +3,14 @@ const {listUsers, getUser, createUser, login, newUser, updateDataUser, setProfil
 const auth = require('../middleware/auth');
 const {celebrate, Joi, Segments} = require("celebrate");
 
+const validateURL = (value, helpers) => {
+  if (validator.isURL(value)) {
+    return value;
+  }
+  return helpers.error('string.uri');
+}
+
+
 
 router.get("/crash-test", () => {
   setTimeout(() => {
@@ -44,7 +52,7 @@ router.patch("/users/me", celebrate ({
 
   router.patch("/users/me/avatar", celebrate ({
     [Segments.BODY]: Joi.object().keys({
-    avatar: Joi.string().required(),
+    avatar: Joi.string().required().custom(validateURL),
     })
     }), setProfileImage);
 

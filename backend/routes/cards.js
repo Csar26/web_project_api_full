@@ -4,7 +4,12 @@ const path = require("path");
 const { getCards, storeCards, deleteCards, addLike, removeLike} = require("../controllers/cards");
 const { celebrate, Joi, errors, Segments } = require('celebrate');
 
-
+const validateURL = (value, helpers) => {
+  if (validator.isURL(value)) {
+    return value;
+  }
+  return helpers.error('string.uri');
+}
 
 
 router.get("/cards", getCards);
@@ -12,7 +17,7 @@ router.get("/cards", getCards);
 router.post('/cards', celebrate ({
   [Segments.BODY]: Joi.object().keys({
   name: Joi.string().required().min(2).max(30),
-  link: Joi.required(),
+  link: Joi.string().required().custom(validateURL),
   })
   }), storeCards);
 

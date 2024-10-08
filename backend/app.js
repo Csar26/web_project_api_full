@@ -11,7 +11,7 @@ const { requestLogger, errorLogger } = require('./middleware/looger');
 const app = express();
 
 
-const whitelist = ['https://auge25.mooo.com, https://www.auge25.mooo.com', "http://localhost"]
+const whitelist = ['https://auge25.mooo.com', 'https://www.auge25.mooo.com', "http://localhost"]
 const corsOptions = {
 origin: whitelist,
   /*origin: function (origin, callback) {

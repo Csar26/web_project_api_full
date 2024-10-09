@@ -15,7 +15,7 @@ const listUsers = (req, res) => {
 };
 
 const getUser = (req, res) => {
-UserInfo.findById(req.params,id).orFail().then(user => {
+UserInfo.findById(req.params.id).orFail().then(user => {
   res.send(user);
 })
 .catch((err) => handleError( err, res));

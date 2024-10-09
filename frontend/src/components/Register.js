@@ -24,6 +24,9 @@ export default function Register() {
         .then((res) => {
           if (!res._id) {
             setIsFullFill(false);
+          }else{
+            setIsFullFill(true);
+
           }
           setOpen(true);
           setTimeout(() => {

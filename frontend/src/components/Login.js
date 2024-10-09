@@ -3,6 +3,7 @@ import Logo from '../images/Vector.svg'
 import { Link, useHistory } from "react-router-dom";
 import * as auth from "../utils/auth"
 import { useState } from "react";
+import api from "../utils/api";
 
 export default function Login ({setIsLogged, email, setEmail}) {
   const [password, setPassword] = useState('');
@@ -18,6 +19,7 @@ export default function Login ({setIsLogged, email, setEmail}) {
     .then((res) => {
       if(res.token){
         localStorage.setItem("jwt", res.token);
+        api.setToken(res.token);
         setIsLogged(true);
         history.push("/home");
       }

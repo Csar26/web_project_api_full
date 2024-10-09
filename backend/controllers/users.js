@@ -15,7 +15,7 @@ const listUsers = (req, res) => {
 };
 
 const getUser = (req, res) => {
-UserInfo.findById(req.params.id).orFail().then(user => {
+UserInfo.findById(req.user._id).orFail().then(user => {
   res.send(user);
 })
 .catch((err) => handleError( err, res));
@@ -29,7 +29,7 @@ const createUser= (req, res) => {
   })
   )
   .then((user) => {
-    res.status(404).send({
+    res.send({
       _id: user._id,
       email: user.email,
     });

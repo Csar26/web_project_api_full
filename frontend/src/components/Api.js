@@ -5,7 +5,11 @@ export default class Api {
     this._token = localStorage.getItem("jwt");
   }
 
-  getUserInfo() {
+  setToken(token){
+    this._token = token;
+  }
+
+  getUserInfo() {    
     return fetch(this._url + "/users/me", {
       headers: {
         Authorization: this._token || localStorage.getItem("jwt"),

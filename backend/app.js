@@ -14,16 +14,10 @@ const app = express();
 const whitelist = ['https://auge25.mooo.com', 'https://www.auge25.mooo.com', "http://localhost"]
 const corsOptions = {
 origin: whitelist,
-  /*origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }*/
 }
 
-app.use(cors(corsOptions))
+app.use(cors());
+app.options("*", cors(corsOptions));
 
 const {PORT = 3000} = process.env;
 

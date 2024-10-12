@@ -58,7 +58,7 @@ const login = (req, res) => {
 
 const setProfileImage = (req, res) => {
 const { avatar } = req.body;
-UserInfo.findUserByCredentials(req.user._id, {avatar}, {new: true})
+UserInfo.findByIdAndUpdate(req.user._id, {avatar}, {new: true})
 .orfail()
 .then((user) => {
   res.send(user);
@@ -68,7 +68,7 @@ UserInfo.findUserByCredentials(req.user._id, {avatar}, {new: true})
 
 const updateDataUser = (req, res) => {
   const { name, about } = req.body;
-  UserInfo.findUserByCredentials(req.user._id, {name, about}, {new: true})
+  UserInfo.findByIdAndUpdate(req.user._id, {name, about}, {new: true})
   .orfail()
   .then((user) => {
     res.send(user);

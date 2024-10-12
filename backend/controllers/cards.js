@@ -27,7 +27,7 @@ function storeCards(req, res){
 
 function deleteCards(req, res){
   const id = req.params.id;
-  CardModel.find({_id:id, owner: req.user._id}).orFail().then(()=> {
+  CardModel.findByIdAndDelete({_id:id, owner: req.user._id}).orFail().then(()=> {
     res.send({status: true})
   }).catch((error) => handleError( error, res));
 

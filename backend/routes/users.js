@@ -2,6 +2,7 @@ const router = require('express').Router();
 const {listUsers, getUser, createUser, login, newUser, updateDataUser, setProfileImage } = require('../controllers/users');
 const auth = require('../middleware/auth');
 const {celebrate, Joi, Segments} = require("celebrate");
+const validator = require("validator");
 
 const validateURL = (value, helpers) => {
   if (validator.isURL(value)) {

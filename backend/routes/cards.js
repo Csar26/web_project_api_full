@@ -22,7 +22,11 @@ router.post('/cards', celebrate ({
   })
   }), storeCards);
 
-router.delete("/cards", deleteCards);
+  router.delete("/cards/:id", deleteCards);
+
+  router.put('/cards/likes/:id', addLike);
+
+  router.delete('/cards/likes/:id', removeLike);
 
 
 

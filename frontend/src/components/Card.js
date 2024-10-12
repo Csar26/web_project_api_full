@@ -19,7 +19,7 @@ export default function Card ({
 
   const hasOwnerLike = () => {
     return likes.some((item) => {
-      return item._id === user._id;
+     return item === user._id;
     });
   };
   const userIsOwner = () => {

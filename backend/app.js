@@ -16,8 +16,7 @@ const corsOptions = {
 origin: whitelist,
 }
 
-app.use(cors());
-app.options("*", cors(corsOptions));
+app.use(cors('*'));
 
 const {PORT = 3000} = process.env;
 

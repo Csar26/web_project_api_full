@@ -3,6 +3,7 @@ const fs = require("fs/promises");
 const path = require("path");
 const { getCards, storeCards, deleteCards, addLike, removeLike} = require("../controllers/cards");
 const { celebrate, Joi, errors, Segments } = require('celebrate');
+const validator = require("validator")
 
 const validateURL = (value, helpers) => {
   if (validator.isURL(value)) {

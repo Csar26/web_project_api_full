@@ -59,7 +59,7 @@ const login = (req, res) => {
 const setProfileImage = (req, res) => {
 const { avatar } = req.body;
 UserInfo.findByIdAndUpdate(req.user._id, {avatar}, {new: true})
-.orfail()
+.orFail()
 .then((user) => {
   res.send(user);
 }).catch((err) => handleError(err, res));
@@ -69,7 +69,7 @@ UserInfo.findByIdAndUpdate(req.user._id, {avatar}, {new: true})
 const updateDataUser = (req, res) => {
   const { name, about } = req.body;
   UserInfo.findByIdAndUpdate(req.user._id, {name, about}, {new: true})
-  .orfail()
+  .orFail()
   .then((user) => {
     res.send(user);
   }).catch((err) => handleError(err, res));

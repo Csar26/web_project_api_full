@@ -12,7 +12,7 @@ export default function PopupWithForm ({children, open, title, onClose, onSubmit
     const inputValues = {};
     for(const i in form.elements){
       if(form.elements[i].name){
-        inputValues[i] = form.elements[i].value;
+        inputValues[form.elements[i].name] = form.elements[i].value;
       }
     }
     return inputValues;

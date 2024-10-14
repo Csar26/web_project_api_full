@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require("bcryptjs");
+const validator = require("validator");
+
 
 const regExpLink =
   /(?:http[s]?:\/\/.)?(?:www\.)?[-a-zA-Z0-9@%._\+~#=]{2,256}\.[a-z]{2,6}\b(?:[-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/;
